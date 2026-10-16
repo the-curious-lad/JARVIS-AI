@@ -1,0 +1,33 @@
+services:
+  - type: web
+    name: jarvis-ai
+    env: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm run start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: GEMMA_PROVIDER
+        value: groq
+      - key: GEMMA_MODEL
+        value: gemma2-9b-it
+      - key: MONGODB_URI
+        sync: false
+      - key: MONGODB_DB_NAME
+        value: jarvis
+      - key: SERPAPI_API_KEY
+        sync: false
+      - key: ELEVENLABS_API_KEY
+        sync: false
+      - key: ELEVENLABS_VOICE_ID
+        value: pNInz6obpgDQGcFmaJgB
+      - key: NEXT_PUBLIC_SENTRY_DSN
+        sync: false
+      - key: SENTRY_DSN
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+      - key: GOOGLE_API_KEY
+        sync: false
+

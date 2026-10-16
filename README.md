@@ -133,7 +133,7 @@ Open **[http://localhost:3000](http://localhost:3000)** in your browser. All fea
 ```bash
 npm run test
 ```
-**21/21 Unit and Integration Tests Pass** across 5 test suites.
+**37/37 Unit and Integration Tests Pass** across 7 comprehensive test suites (Workers, Tools, Context Engine, Auth & Vector, Voice & Planner, Action Queue, Scheduler).
 
 ---
 
@@ -144,28 +144,36 @@ npm run test
 MONGODB_URI=mongodb+srv://<user>:<password>@cluster.mongodb.net/jarvis?retryWrites=true&w=majority
 MONGODB_DB_NAME=jarvis
 
-# Open-Weight AI (Gemma 2)
-GEMMA_PROVIDER=mock    # Options: "groq", "huggingface", "google", "ollama", "mock"
-GEMMA_MODEL=gemma-2-9b-it
-GROQ_API_KEY=
-HUGGINGFACE_API_KEY=
+# Open-Weight AI (Gemma 2 / Gemma 3)
+GEMMA_PROVIDER=ollama    # Options: "ollama" (local on-device), "groq", "google", "huggingface"
+GEMMA_MODEL=gemma3:4b
+OLLAMA_BASE_URL=http://localhost:11434
 
-# Live Search (SerpApi)
-SERPAPI_API_KEY=
+# Live Google Search (SerpApi)
+SERPAPI_API_KEY=<your_serpapi_key>
 
 # Voice AI (ElevenLabs)
-ELEVENLABS_API_KEY=
-ELEVENLABS_VOICE_ID=21m00Tcm4TlvDq8ikWAM
+ELEVENLABS_API_KEY=<your_elevenlabs_key>
+ELEVENLABS_VOICE_ID=pNInz6obpgDQGcFmaJgB  # Adam (works on free & paid tiers)
 
 # Observability (Sentry)
-NEXT_PUBLIC_SENTRY_DSN=
+NEXT_PUBLIC_SENTRY_DSN=https://<key>@<org>.ingest.sentry.io/<project>
+SENTRY_DSN=https://<key>@<org>.ingest.sentry.io/<project>
 ```
 
 ---
 
 ## ☁️ Deployment on Render
 
-This repository includes a [`render.yaml`](file:///render.yaml) blueprint:
-1. Connect this repository to your [Render](https://render.com/) account.
-2. Select **Blueprint** deploy.
-3. Render automatically provisions the Next.js production service, builds the assets, and starts the server.
+This repository includes a production [`render.yaml`](file:///render.yaml) blueprint:
+1. Push this repository to your [GitHub account](https://github.com/the-curious-lad/JARVIS-AI).
+2. Go to [Render Dashboard](https://dashboard.render.com/) and click **New +** -> **Blueprint**.
+3. Connect your `the-curious-lad/JARVIS-AI` repository.
+4. Render automatically parses `render.yaml` and requests any private environment variables:
+   - `MONGODB_URI`: Your MongoDB Atlas connection string.
+   - `SERPAPI_API_KEY`: Your SerpApi API key.
+   - `ELEVENLABS_API_KEY`: Your ElevenLabs API key.
+   - `NEXT_PUBLIC_SENTRY_DSN` / `SENTRY_DSN`: Your Sentry DSN.
+   - `GROQ_API_KEY` or `GOOGLE_API_KEY`: For cloud Gemma open-weight inference.
+5. Click **Apply** — Render automatically builds and hosts JARVIS live on the internet!
+

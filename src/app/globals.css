@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #04060d;
+  --foreground: #f0f6fc;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  overflow-x: hidden;
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(6, 182, 212, 0.08) 0%, transparent 60%),
+    radial-gradient(circle at 100% 100%, rgba(59, 130, 246, 0.05) 0%, transparent 40%),
+    linear-gradient(to bottom, #04060d, #070b14);
+  background-attachment: fixed;
+}
+
+/* Custom sleek scrollbars */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(4, 6, 13, 0.8);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(6, 182, 212, 0.25);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(6, 182, 212, 0.55);
+}
+
+/* Arc Reactor Pulse Keyframes */
+@keyframes reactor-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes reactor-spin-reverse {
+  0% { transform: rotate(360deg); }
+  100% { transform: rotate(0deg); }
+}
+
+@keyframes reactor-pulse {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(6, 182, 212, 0.4), inset 0 0 15px rgba(6, 182, 212, 0.2);
+    opacity: 0.85;
+  }
+  50% {
+    box-shadow: 0 0 35px rgba(6, 182, 212, 0.8), inset 0 0 25px rgba(6, 182, 212, 0.5);
+    opacity: 1;
+  }
+}
+
+.animate-spin-slow {
+  animation: reactor-spin 12s linear infinite;
+}
+
+.animate-spin-reverse-slow {
+  animation: reactor-spin-reverse 8s linear infinite;
+}
+
+.animate-reactor-pulse {
+  animation: reactor-pulse 2.5s ease-in-out infinite;
+}
+
+/* Glowing Neon Borders */
+.glow-cyan {
+  box-shadow: 0 0 15px rgba(6, 182, 212, 0.25);
+}
+
+.glow-cyan-hover:hover {
+  box-shadow: 0 0 25px rgba(6, 182, 212, 0.45);
+}
